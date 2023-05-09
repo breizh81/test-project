@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  db:
+    image: bitnami/mongodb:latest
+    container_name: mongo-db
+    #environment:
+    # MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+    # MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    ports:
+      - ${MONGODB_PORT}:27017
+    expose:
+      - ${MONGODB_PORT}
+    volumes:
+      - data-documents:/data/db
+    networks:
+      - symfony-network
+  php-symfony:
+    container_name: php-symfony
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    ports:
+      - '8000:8000'
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - SYMFONY_PROJECT_NAME=test-project
+      - SYMFONY_PROJECT_SKELETON=symfony/skeleton
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - '.:/app'
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - symfony-network
+networks:
+  symfony-network:
+    driver: bridge
+volumes:
+  data-documents:
