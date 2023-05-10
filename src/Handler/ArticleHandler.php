@@ -2,6 +2,7 @@
 
 namespace App\Handler;
 
+use App\Exception\ArticleException;
 use App\Repository\ArticleRepositoryInterface;
 
 class ArticleHandler
@@ -12,7 +13,11 @@ class ArticleHandler
 
     public function getArticle(string $id): ?string
     {
-        return $this->articleRepository->findById($id)?->transform();
+        if (!is_null($article = $this->articleRepository->findById($id))) {
+            return $article->transform();
+        }
+
+        throw new ArticleException('Aucun article n\'a été trouvé pour cette url.');
     }
 
     public function getArticles(): array
