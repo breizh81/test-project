@@ -32,12 +32,6 @@ drop-mongo-schema:
 populate-mongo-db:
 	$(DOCKER_ROOT) bin/console app:add-article
 
-run-encore-server:
-	$(DOCKER_ROOT) npm run watch
-
-update-encore:
-	$(DOCKER_ROOT) npm run dev
-
 install: composer-install ## Install dependencies
 
 phpcs-fix-dry-run:
