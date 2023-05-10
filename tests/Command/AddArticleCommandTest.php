@@ -2,11 +2,9 @@
 
 namespace Command;
 
-
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-use App\Command\AddArticleCommand;
 
 class AddArticleCommandTest extends KernelTestCase
 {
@@ -21,7 +19,7 @@ class AddArticleCommandTest extends KernelTestCase
         $this->commandTester = new CommandTester($command);
     }
 
-    public function testExecute()
+    public function testExecute(): void
     {
         $this->commandTester->execute([]);
 

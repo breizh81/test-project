@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ArticleHandlerTest extends TestCase
 {
-    public function testGetArticle()
+    public function testGetArticle(): void
     {
         $articleMock = $this->createMock(Article::class);
         $articleMock->expects($this->never())->method('transform');
@@ -20,7 +20,7 @@ class ArticleHandlerTest extends TestCase
         self::assertEquals(null, $articleHandler->getArticle('id'));
     }
 
-    public function testGetArticleWithResult()
+    public function testGetArticleWithResult(): void
     {
         $articleMock = $this->createMock(Article::class);
         $articleMock->expects($this->once())->method('transform')->willReturn('url');
@@ -31,7 +31,7 @@ class ArticleHandlerTest extends TestCase
         self::assertEquals('url', $articleHandler->getArticle('id'));
     }
 
-    public function testGetArticles()
+    public function testGetArticles(): void
     {
         $articleRepository = $this->createMock(ArticleRepositoryInterface::class);
         $articleRepository->expects($this->once())->method('findAll')->willReturn([]);
@@ -40,7 +40,7 @@ class ArticleHandlerTest extends TestCase
         self::assertEquals([], $articleHandler->getArticles());
     }
 
-    public function testGetArticlesWithResult()
+    public function testGetArticlesWithResult(): void
     {
         $articleMock = $this->createMock(Article::class);
         $articleRepository = $this->createMock(ArticleRepositoryInterface::class);

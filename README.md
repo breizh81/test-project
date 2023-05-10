@@ -8,4 +8,6 @@ The next step is to deal with the database. Create and populate.
 
 Last step run tests.
 
-There is a makefile that can help you lanch the necessary commands.
+There is a makefile that can help you launch the necessary commands.
+
+Once your docker is up you can test the app at [http://localhost:8000](http://localhost:8000)

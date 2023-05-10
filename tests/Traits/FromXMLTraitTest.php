@@ -3,19 +3,17 @@
 namespace Traits;
 
 use App\Traits\FromXMLTrait;
-use App\ValueObject\ArticleValueObject;
 use App\ValueObject\NonEmpty;
 use DOMDocument;
 use DOMElement;
 use DOMNodeList;
-use PHPUnit\Framework\MockObject\MockClass;
 use PHPUnit\Framework\TestCase;
 
 class FromXMLTraitTest extends TestCase
 {
     use FromXMLTrait;
 
-    public function testChildToNonEmptyReturnsNullIfChildNodeNotFound()
+    public function testChildToNonEmptyReturnsNullIfChildNodeNotFound(): void
     {
         $mockDomElement = $this->createMock(DOMElement::class);
         $mockDomElement->expects($this->once())
@@ -26,24 +24,15 @@ class FromXMLTraitTest extends TestCase
         $this->assertNull($this->childToNonEmpty($mockDomElement, 'test'));
     }
 
-    public function testChildToNonEmptyReturnsNonEmptyObjectIfChildNodeFound()
+    public function testChildToNonEmptyReturnsNonEmptyObjectIfChildNodeFound(): void
     {
-        $mockDomNodeList = $this->createMock(DOMNodeList::class);
-        $mockDomNodeList->expects($this->once())
-            ->method('item')
-            ->with(0)
-            ->willReturn('yes');
+        $doc = new DOMDocument();
+        $doc->loadXML('<article><test>content</test></article>');
 
-        $mockDomElement = $this->createMock(DOMElement::class);
-        $mockDomElement->expects($this->once())
-            ->method('getElementsByTagName')
-            ->with('test')
-            ->willReturn($mockDomNodeList);
-
-        $this->assertInstanceOf(NonEmpty::class, $this->childToNonEmpty($mockDomElement, 'test'));
+        $this->assertInstanceOf(NonEmpty::class, $this->childToNonEmpty($doc->documentElement, 'test'));
     }
 
-    public function testToNonEmptyReturnsNonEmptyObject()
+    public function testToNonEmptyReturnsNonEmptyObject(): void
     {
         $result = $this->toNonEmpty('test');
         $this->assertInstanceOf(NonEmpty::class, $result);

@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class ArticleValueObjectTest extends TestCase
 {
-
     /**
      * @dataProvider providerTestDeserializeToDOMElement
      */

@@ -6,11 +6,8 @@ use App\Repository\ArticleRepositoryInterface;
 
 class ArticleHandler
 {
-    private ArticleRepositoryInterface $articleRepository;
-
-    public function __construct(ArticleRepositoryInterface $articleRepository)
+    public function __construct(private readonly ArticleRepositoryInterface $articleRepository)
     {
-        $this->articleRepository = $articleRepository;
     }
 
     public function getArticle(string $id): ?string

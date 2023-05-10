@@ -5,18 +5,11 @@ namespace App\ValueObject;
 use App\Document\ArticleInterface;
 use DOMDocument;
 use DOMElement;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class ArticleValueObject
 {
-    private ArticleInterface $article;
-
-    function __construct(ArticleInterface $article)
+    function __construct(private readonly ArticleInterface $article)
     {
-        $this->article = $article;
     }
 
     public function transformToDOMElement(): DOMElement
@@ -26,5 +19,4 @@ class ArticleValueObject
 
         return $dom->documentElement;
     }
-
 }

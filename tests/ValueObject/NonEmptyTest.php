@@ -8,14 +8,14 @@ use PHPUnit\Framework\TestCase;
 
 class NonEmptyTest extends TestCase
 {
-    public function testException()
+    public function testException(): void
     {
         $this->expectException(ArticleException::class);
         $this->expectExceptionMessage('Aucune url n\'a été trouvé pour cet article.');
        new NonEmpty('');
     }
 
-    public function testOk()
+    public function testOk(): void
     {
         $object = new NonEmpty('test');
 

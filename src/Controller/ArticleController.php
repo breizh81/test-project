@@ -12,11 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ArticleController extends AbstractController
 {
-    private ArticleHandler $articleHandler;
-
-    public function __construct(ArticleHandler $articleHandler)
+    public function __construct(private readonly ArticleHandler $articleHandler)
     {
-        $this->articleHandler = $articleHandler;
     }
 
     /**

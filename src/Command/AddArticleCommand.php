@@ -25,12 +25,8 @@ class AddArticleCommand extends Command
                 <Picture/>
                 </Article>';
 
-    private ArticleRepositoryInterface $articleRepository;
-
-    public function __construct(ArticleRepositoryInterface $articleRepository)
+    public function __construct(private readonly ArticleRepositoryInterface $articleRepository)
     {
-        $this->articleRepository = $articleRepository;
-
         parent::__construct();
     }
 
@@ -43,7 +39,7 @@ class AddArticleCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $title = $input->getArgument('title') ?? $this->generateTitle();
         $xml   = $input->getArgument('xml') ?? $this->generateXml();
