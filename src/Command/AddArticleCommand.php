@@ -16,8 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class AddArticleCommand extends Command
 {
-    const EXAMPLE_ARTICLE_TITLE = 'Article1.xml';
-    const EXAMPLE_ARTICLE_XML = '<Article id="a5147990-9191-4fdf-968b-6ae5f562cef3"><CreationDate>2020-05-19T13:17:11+02:00</CreationDate>
+    public const EXAMPLE_ARTICLE_TITLE = 'Article1.xml';
+    public const EXAMPLE_ARTICLE_XML = '<Article id="a5147990-9191-4fdf-968b-6ae5f562cef3"><CreationDate>2020-05-19T13:17:11+02:00</CreationDate>
                 <Type>standard</Type>
                 <Title>Article1</Title>
                 <URL>/France/Article1</URL>
@@ -42,7 +42,7 @@ class AddArticleCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $title = $input->getArgument('title') ?? $this->generateTitle();
-        $xml   = $input->getArgument('xml') ?? $this->generateXml();
+        $xml = $input->getArgument('xml') ?? $this->generateXml();
 
         $article = new Article($xml, $title);
 

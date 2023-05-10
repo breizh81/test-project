@@ -40,6 +40,12 @@ update-encore:
 
 install: composer-install ## Install dependencies
 
+phpcs-fix-dry-run:
+	$(DOCKER_ROOT) vendor/bin/php-cs-fixer fix  --dry-run
+
+phpcs-fix:
+	$(DOCKER_ROOT) vendor/bin/php-cs-fixer fix
+
 start: ## Start the project
 	COMPOSE_PROJECT_NAME="php-symfony" docker-compose -f docker-compose.yml up -d --build
 	@echo "$(OK_STRING)" 'The web app should be accessible on http://localhost:8000'

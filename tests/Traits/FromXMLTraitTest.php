@@ -4,9 +4,6 @@ namespace Traits;
 
 use App\Traits\FromXMLTrait;
 use App\ValueObject\NonEmpty;
-use DOMDocument;
-use DOMElement;
-use DOMNodeList;
 use PHPUnit\Framework\TestCase;
 
 class FromXMLTraitTest extends TestCase
@@ -15,18 +12,18 @@ class FromXMLTraitTest extends TestCase
 
     public function testChildToNonEmptyReturnsNullIfChildNodeNotFound(): void
     {
-        $mockDomElement = $this->createMock(DOMElement::class);
+        $mockDomElement = $this->createMock(\DOMElement::class);
         $mockDomElement->expects($this->once())
             ->method('getElementsByTagName')
             ->with('test')
-            ->willReturn(new DOMNodeList());
+            ->willReturn(new \DOMNodeList());
 
         $this->assertNull($this->childToNonEmpty($mockDomElement, 'test'));
     }
 
     public function testChildToNonEmptyReturnsNonEmptyObjectIfChildNodeFound(): void
     {
-        $doc = new DOMDocument();
+        $doc = new \DOMDocument();
         $doc->loadXML('<article><test>content</test></article>');
 
         $this->assertInstanceOf(NonEmpty::class, $this->childToNonEmpty($doc->documentElement, 'test'));

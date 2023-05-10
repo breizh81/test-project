@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use App\ValueObject\ArticleValueObject;
 use App\ValueObject\NonEmpty;
-use DOMElement;
 use Webmozart\Assert\Assert;
 
 trait FromXMLTrait
@@ -17,7 +16,7 @@ trait FromXMLTrait
     /**
      * Tries to return child node text value of the given element as a NonEmpty value object.
      */
-    final public function childToNonEmpty(DOMElement $root, string $name, string $type = NonEmpty::class): ?NonEmpty
+    final public function childToNonEmpty(\DOMElement $root, string $name, string $type = NonEmpty::class): ?NonEmpty
     {
         if (null === $value = $this->childValue($root, $name)) {
             return null;
@@ -37,7 +36,7 @@ trait FromXMLTrait
         return new NonEmpty($value);
     }
 
-    private function childValue(DOMElement $root, string $nodeName): ?string
+    private function childValue(\DOMElement $root, string $nodeName): ?string
     {
         $childNodes = $root->getElementsByTagName($nodeName);
         if (0 === $childNodes->length) {

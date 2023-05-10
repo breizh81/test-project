@@ -5,7 +5,6 @@ namespace ValueObject;
 use App\Document\Article;
 use App\Document\ArticleInterface;
 use App\ValueObject\ArticleValueObject;
-use DOMElement;
 use PHPUnit\Framework\TestCase;
 
 class ArticleValueObjectTest extends TestCase
@@ -13,7 +12,7 @@ class ArticleValueObjectTest extends TestCase
     /**
      * @dataProvider providerTestDeserializeToDOMElement
      */
-    public function testDeserializeToDOMElement(ArticleInterface $article, DOMElement $DOMElement): void
+    public function testDeserializeToDOMElement(ArticleInterface $article, \DOMElement $DOMElement): void
     {
         $articleValueObject = new ArticleValueObject($article);
         self::assertEquals($DOMElement, $articleValueObject->transformToDOMElement());

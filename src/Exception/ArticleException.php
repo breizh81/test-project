@@ -2,9 +2,6 @@
 
 namespace App\Exception;
 
-use Exception;
-
-class ArticleException extends Exception
+class ArticleException extends \Exception
 {
-
 }

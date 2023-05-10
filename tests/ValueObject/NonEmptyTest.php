@@ -12,7 +12,7 @@ class NonEmptyTest extends TestCase
     {
         $this->expectException(ArticleException::class);
         $this->expectExceptionMessage('Aucune url n\'a été trouvé pour cet article.');
-       new NonEmpty('');
+        new NonEmpty('');
     }
 
     public function testOk(): void

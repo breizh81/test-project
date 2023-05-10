@@ -19,5 +19,4 @@ class ArticleHandler
     {
         return $this->articleRepository->findAll();
     }
-
 }
