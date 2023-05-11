@@ -4,7 +4,11 @@ In order for the project to run correctly you have to execute the following:
 
 Firstly you have to start docker and install dependencies : 
 ```
-make start install
+make start
+```
+
+```
+make install
 ```
 
 The next step is to deal with the database. Create and populate.
